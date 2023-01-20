@@ -5,13 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gkhaishb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/18 17:51:43 by gkhaishb          #+#    #+#             */
-/*   Updated: 2023/01/18 18:46:52 by gkhaishb         ###   ########.fr       */
+/*   Created: 2023/01/20 14:59:09 by gkhaishb          #+#    #+#             */
+/*   Updated: 2023/01/20 15:00:27 by gkhaishb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <stdio.h>
 
-void	*memset(void *str, int c, size_t n)
+void	*ft_memset(void *str, int c, size_t n)
 {
 	int				i;
 	unsigned char	*ptr;

@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gkhaishb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/18 17:28:14 by gkhaishb          #+#    #+#             */
-/*   Updated: 2023/01/18 17:28:19 by gkhaishb         ###   ########.fr       */
+/*   Created: 2023/01/18 17:11:33 by gkhaishb          #+#    #+#             */
+/*   Updated: 2023/01/18 17:11:37 by gkhaishb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-size_t	ft_strlen(char *str)
-{
-	int	i;
 
-	i = 0;
-	while (str[i])
-	{
-		i++;
-	}
-	return (i);
+#include <unistd.h>
+#include <stdio.h>
+
+int	ft_isascii(int c)
+{
+	return (c >= 0 && c < 128);
 }
+/*int main()
+{
+  printf("%i", ft_isascii('f'));
+}*/

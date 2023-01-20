@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gkhaishb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/18 17:28:14 by gkhaishb          #+#    #+#             */
-/*   Updated: 2023/01/18 17:28:19 by gkhaishb         ###   ########.fr       */
+/*   Created: 2023/01/18 17:10:02 by gkhaishb          #+#    #+#             */
+/*   Updated: 2023/01/18 17:10:06 by gkhaishb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-size_t	ft_strlen(char *str)
-{
-	int	i;
+#include <unistd.h>
+#include <stdio.h>
 
-	i = 0;
-	while (str[i])
-	{
-		i++;
-	}
-	return (i);
+int	ft_isalnum(int arg)
+{
+	return ((arg >= 'a' && arg <= 'z') || \
+		(arg >= 'A' && arg <= 'Z') || (arg >= '0' && arg <= '9'));
 }
+/*int main()
+{
+  printf("%i", ft_isalnum(4));
+}*/
