@@ -9,8 +9,6 @@
 /*   Updated: 2023/01/18 17:10:06 by gkhaishb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include <stdio.h>
 
 int	ft_isalnum(int arg)
 {
