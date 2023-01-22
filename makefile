@@ -12,11 +12,14 @@
 
 SRCS			= $(wildcard *.c)
 
-OBJS			= $(SRCS:.c=.o)
+OBJS			= $(patsubst %.c, %.o, $(SRCS))
 
 CC				= gcc
 RM				= rm -f
-CFLAGS			= -Wall -Wextra -Werror -I.
+CFLAGS			= -Wall -Wextra -Werror
+
+%.o : %.c  
+	$(CC) -c $< -o $@
 
 NAME			= libft.a
 
@@ -31,6 +34,6 @@ clean:
 fclean:			clean
 				$(RM) $(NAME)
 
-re:				fclean $(NAME)
+re:				fclean all
 
-.PHONY:			all clean fclean re bonus
+.PHONY:			all clean fclean re
