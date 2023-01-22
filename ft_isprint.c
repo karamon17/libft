@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkhaishb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gevorg <gevorg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 17:15:24 by gkhaishb          #+#    #+#             */
-/*   Updated: 2023/01/18 17:15:26 by gkhaishb         ###   ########.fr       */
+/*   Updated: 2023/01/22 16:15:05 by gevorg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_isprint(int arg)
 {
-	return (arg >= 32 && arg <= 127);
+	return (arg >= 32 && arg <= 126);
 }
 /*int main()
 {
