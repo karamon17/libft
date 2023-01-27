@@ -14,7 +14,7 @@
 
 void	*ft_memset(void *str, int c, size_t n)
 {
-	int				i;
+	size_t			i;
 	unsigned char	*ptr;
 
 	i = 0;
@@ -26,9 +26,3 @@ void	*ft_memset(void *str, int c, size_t n)
 	}
 	return (str);
 }
-/*int main()
-{
-    char str[50] = "1234567677867";
-    memset(str, 'M', 4);
-    printf("%s", str);
-}*/
