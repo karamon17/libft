@@ -23,6 +23,14 @@ char	**ft_split(char const *s, char c)
 
 	i = 0;
 	count = 0;
+	if (!ft_strchr(s, c))
+	{
+		res = malloc((count + 2) * sizeof(char *));
+		if (!res)
+			return (0);
+		*res = ft_strdup(s);
+		return (res);
+	}
 	while (s[i] == c)
 		i++;
 	if (s[i] == '\0')
@@ -41,7 +49,6 @@ char	**ft_split(char const *s, char c)
 			while (s[i] == c)
 				i++;
 		}
-		//printf("Check %d, %d\n", count, i);
 	}
 	res = malloc((count + 2) * sizeof(char *));
 	if (!res)
@@ -64,19 +71,5 @@ char	**ft_split(char const *s, char c)
 	}
 	if (s[ft_strlen((char *)s) - 1] != c)
 		res[i] = ft_strdup(temp);
-	return (res);
+	return (res); 
 }
-
-/*int main()
-{
-	char **s;
-	int i, j;
-	i = 0;
-	j = 0;
-	s = ft_split("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultricies diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.", 'i');
-	while (s[i])
-	{
-		printf("%s\n", s[i]);
-		i++;
-	}
-}*/
