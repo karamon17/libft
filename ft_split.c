@@ -11,36 +11,12 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-char	**ft_split(char const *s, char c)
+int	ft_count(int i, const char *s, char c)
 {
-	char	**res;
-	char	*temp;
-	char	*temp1;
-	int		i;
-	int		count;
+	int	count;
 
-	i = 0;
 	count = 0;
-	if (!ft_strchr(s, c))
-	{
-		res = malloc((count + 2) * sizeof(char *));
-		if (!res)
-			return (0);
-		*res = ft_strdup(s);
-		return (res);
-	}
-	while (s[i] == c)
-		i++;
-	if (s[i] == '\0')
-	{
-		res = malloc(sizeof(char *));
-		if (!res)
-			return (0);
-		res[0] = 0;
-		return (res);
-	}
 	while (s[i])
 	{
 		if (s[i++] == c)
@@ -50,9 +26,15 @@ char	**ft_split(char const *s, char c)
 				i++;
 		}
 	}
-	res = malloc((count + 2) * sizeof(char *));
-	if (!res)
-		return (0);
+	return (count);
+}
+
+char	**ft_res(char	**res, char const *s, char c, int count)
+{
+	char	*temp;
+	char	*temp1;
+	int		i;
+
 	i = 0;
 	temp = ft_strdup(s);
 	while (*temp == c)
@@ -62,14 +44,42 @@ char	**ft_split(char const *s, char c)
 		temp1 = ft_strchr(temp, c);
 		*(temp1) = 0;
 		while (*(temp1 + 1) == c)
-		{
 			temp1++;
-		}
-		res[i] = ft_strdup(temp);
+		res[i++] = ft_strdup(temp);
 		temp = temp1 + 1;
-		i++;
 	}
-	if (s[ft_strlen((char *)s) - 1] != c)
+	if (s[ft_strlen(s) - 1] != c)
+	{
 		res[i] = ft_strdup(temp);
-	return (res); 
+		res[i + 1] = 0;
+	}
+	else
+		res[i] = 0;
+	return (res);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**res;
+	int		i;
+	int		count;
+
+	i = 0;
+	count = 0;
+	while (s[i] == c)
+		i++;
+	if (!s[i])
+	{
+		res = malloc(sizeof(char *));
+		if (!res)
+			return (0);
+		res[0] = 0;
+		return (res);
+	}
+	count = ft_count(i, s, c);
+	res = malloc((count + 2) * sizeof(char *));
+	if (!res)
+		return (0);
+	res = ft_res(res, s, c, count);
+	return (res);
 }

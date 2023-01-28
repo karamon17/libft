@@ -16,7 +16,3 @@ int	ft_isascii(int c)
 {
 	return (c >= 0 && c < 128);
 }
-/*int main()
-{
-  printf("%i", ft_isascii('f'));
-}*/

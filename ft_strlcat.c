@@ -18,7 +18,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	size_t	d;
 
 	if (dstsize <= ft_strlen(dst))
-		return (dstsize + ft_strlen((char *)src));
+		return (dstsize + ft_strlen(src));
 	c = ft_strlen(dst);
 	d = 0;
 	while (src[d] != '\0' && c + 1 < dstsize)
@@ -28,10 +28,5 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 		d++;
 	}
 	dst[c] = '\0';
-	return (ft_strlen(dst) + ft_strlen((char *)&src[d]));
+	return (ft_strlen(dst) + ft_strlen(&src[d]));
 }
-/*int main()
-{
-  char x[10] = "hello ";
-  printf("%i", ft_strlcat(x, "world", 80));
-}*/

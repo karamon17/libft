@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gkhaishb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/18 17:11:17 by gkhaishb          #+#    #+#             */
-/*   Updated: 2023/01/18 17:11:21 by gkhaishb         ###   ########.fr       */
+/*   Created: 2023/01/28 20:21:38 by gkhaishb          #+#    #+#             */
+/*   Updated: 2023/01/28 20:21:41 by gkhaishb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalpha(int c)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
+	unsigned int	i;
+	int				slen;
+	char			*res;
+
+	slen = ft_strlen(s);
+	i = 0;
+	res = malloc((slen + 1) * sizeof(char));
+	if (!res)
+		return (0);
+	while (s[i])
+	{
+		res[i] = f(i, s[i]);
+		i++;
+	}
+	res[i] = 0;
+	return (res);
 }

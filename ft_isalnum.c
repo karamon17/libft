@@ -17,7 +17,3 @@ int	ft_isalnum(int arg)
 	return ((arg >= 'a' && arg <= 'z') || \
 		(arg >= 'A' && arg <= 'Z') || (arg >= '0' && arg <= '9'));
 }
-/*int main()
-{
-  printf("%i", ft_isalnum(4));
-}*/

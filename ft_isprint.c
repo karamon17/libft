@@ -16,7 +16,3 @@ int	ft_isprint(int arg)
 {
 	return (arg >= 32 && arg <= 126);
 }
-/*int main()
-{
-  printf("%i", ft_isprint('g'));
-}*/
