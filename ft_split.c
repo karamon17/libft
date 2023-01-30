@@ -73,6 +73,9 @@ char	**ft_split(char const *s, char c)
 		res = malloc(sizeof(char *));
 		if (!res)
 			return (0);
+		res[0] = malloc(sizeof(char));
+		if (!res[0])
+			return (0);
 		res[0] = 0;
 		return (res);
 	}
