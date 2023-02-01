@@ -42,10 +42,10 @@ bonus: $(OBJS) $(OBJS_BONUS)
 	ar rcs $(NAME) $(OBJS) $(OBJS_BONUS)
 
 clean:
-				$(RM) $(OBJS) 
+				$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean:			clean
-				$(RM) $(NAME)
+				$(RM) $(NAME) $(OBJS) $(OBJS_BONUS)
 
 re:				fclean all
 
