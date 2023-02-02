@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkhaishb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gevorg <gevorg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:40:27 by gkhaishb          #+#    #+#             */
-/*   Updated: 2023/01/30 16:40:29 by gkhaishb         ###   ########.fr       */
+/*   Updated: 2023/02/02 16:07:07 by gevorg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,18 @@
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*res;
-	t_list	**temp;
+	t_list	*new;
 
-	
-	res = malloc(sizeof(t_list));
-	if (!res)
-	{
-		return (0);
-	}
-	res = lst;
-	*temp = res;
+	res = (void *)0;
 	while (lst)
 	{
-		res -> content = f(lst -> content);
-		res -> next = malloc(sizeof(t_list));
-		if (!(res -> next))
+		new = ft_lstnew(f(lst -> content));
+		if (!new)
 		{
-			ft_lstclear(temp, del((*temp) -> content));
-			return (0);
+			ft_lstclear(&res, del);
+			return (res);
 		}
-		res = res -> next;
+		ft_lstadd_back(&res, new);
 		lst = lst -> next;
 	}
 	return (res);
