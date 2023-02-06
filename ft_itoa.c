@@ -12,69 +12,59 @@
 
 #include "libft.h"
 
-int	ft_count(int n)
+static char	*ft_check(long nb, char *str, int i)
 {
-	int	ntmp;
-	int	count;
-
-	count = 0;
-	ntmp = n;
-	while (ntmp)
+	if (nb < 0)
 	{
-		ntmp /= 10;
-		count++;
+		str[0] = '-';
+		nb *= -1;
 	}
-	return (count);
+	while (nb > 0 && i >= 0)
+	{
+		str[i] = '0' + (nb % 10);
+		nb = nb / 10;
+		i--;
+	}
+	return (str);
 }
 
-int	ft_power(int count)
+static int	ft_lenght(long nb)
 {
-	int	power;
+	long	len;
 
-	power = 10;
-	while (count > 2)
+	len = 0;
+	if (nb == 0)
+		len = 1;
+	while (nb < 0)
 	{
-		power *= 10;
-		count--;
+		nb *= -1;
+		len++;
 	}
-	return (power);
-}
-
-char	*ft_res(int count, char *res, int n, int i)
-{
-	int	ntmp;
-
-	while (count > 1)
+	while (nb > 0)
 	{
-		ntmp = n / ft_power(count);
-		res[i++] = ntmp + '0';
-		n = n % ft_power(count--);
+		nb = nb / 10;
+		len++;
 	}
-	res[i] = n + '0';
-	res[i + 1] = 0;
-	return (res);
+	return (len);
 }
 
 char	*ft_itoa(int n)
 {
+	char	*str;
+	long	nb;
 	int		i;
-	int		count;
-	char	*res;
 
-	count = ft_count(n);
-	i = 0;
-	if (n == 0)
-		return (ft_strdup("0"));
-	else if (n == INT_MIN)
-		return (ft_strdup("-2147483648"));
-	else if (n > 0)
-		res = malloc((count + 1) * sizeof(char));
-	else
+	nb = n;
+	i = ft_lenght(nb);
+	str = (char *)malloc(sizeof(char) * (i + 1));
+	if (!str)
+		return (0);
+	if (nb == 0)
 	{
-		res = malloc((count + 2) * sizeof(char));
-		n = -n;
-		res[0] = '-';
-		i = 1;
+		str[0] = '0';
+		str[1] = 0;
+		return (str);
 	}
-	return (ft_res(count, res, n, i));
+	str[i--] = 0;
+	return (ft_check(nb, str, i));
 }
