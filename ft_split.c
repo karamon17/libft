@@ -12,78 +12,88 @@
 
 #include "libft.h"
 
-static int	ft_count(int i, const char *s, char c)
+static int	ft_wordcount(const char *s, char c)
 {
-	int	count;
+	int	i;
+	int	j;
 
-	count = 0;
+	i = 0;
+	j = 0;
 	while (s[i])
 	{
-		if (s[i++] == c)
-		{	
-			count++;
-			while (s[i] == c)
+		if (s[i] == c)
+			i++;
+		else
+		{
+			j++;
+			while (s[i] && s[i] != c)
 				i++;
 		}
 	}
-	return (count);
+	return (j);
 }
 
-static char	**ft_cleanmem(int i, char **res)
+static char	*ft_putword(const char *s, char c)
 {
-	while (i >= 0)
-		free(res[i--]);
-	free(res);
-	return (0);
-}
-
-static char	**ft_res(char	**res, char const *s, char c, int count)
-{
-	char	*temp;
-	char	*temp1;
 	int		i;
+	int		j;
+	char	*word;
 
-	i = -1;
-	temp = ft_strdup(s);
-	if (!temp)
-		return (0);
-	while (++i <= count)
+	i = 0;
+	j = 0;
+	while (s[i] && s[i] == c)
+		i++;
+	while (s[i] && s[i] != c)
 	{
-		temp1 = ft_strchr(temp, c);
-		if (temp1)
-		{
-			*(temp1) = 0;
-			while (*(temp1 + 1) == c)
-				temp1++;
-		}
-		res[i] = ft_strdup(temp);
-		if (!res[i])
-			return (ft_cleanmem(i, res));
-		temp = temp1 + 1;
+		i++;
+		j++;
 	}
-	return (res);
+	word = malloc(sizeof(char) * (j + 1));
+	if (!word)
+		return (0);
+	i -= j;
+	j = 0;
+	while (s[i] && s[i] != c)
+		word[j++] = s[i++];
+	word[j] = '\0';
+	return (word);
+}
+
+static void	ft_free(int i, char **new)
+{
+	while (i > 0)
+	{
+		free(new[i - 1]);
+		i--;
+	}
+	free(new);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**res;
+	char	**new;
+	int		wc;
 	int		i;
-	int		count;
-	char	*s1;
-	char	s2[2];
+	int		j;
 
-	s2[0] = c;
-	s2[1] = 0;
-	s1 = ft_strtrim(s, s2);
-	if (!s1)
+	if (!s)
 		return (0);
-	i = 0;
-	count = 0;
-	if (!s1[i])
-		return ((char **)ft_calloc(1, sizeof(char *)));
-	count = ft_count(i, s1, c);
-	res = ft_calloc(count + 2, sizeof(char *));
-	if (!res)
-		return (0);
-	return (ft_res(res, s1, c, count));
+	i = -1;
+	j = 0;
+	wc = ft_wordcount(s, c);
+	new = malloc(sizeof(char *) * wc + 1);
+	if (!new)
+		return (new);
+	while (++i < wc)
+	{
+		while (s[j] && s[j] == c)
+			j++;
+		new[i] = ft_putword(&s[j], c);
+		if (!new[i])
+			ft_free(i, new);
+		while (s[j] && s[j] != c)
+			j++;
+	}
+	new[i] = 0;
+	return (new);
 }
