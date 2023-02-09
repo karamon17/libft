@@ -70,8 +70,11 @@ char	**ft_split(char const *s, char c)
 	int		i;
 	int		count;
 	char	*s1;
+	char	s2[2];
 
-	s1 = ft_strtrim(s, &c);
+	s2[0] = c;
+	s2[1] = 0;
+	s1 = ft_strtrim(s, s2);
 	if (!s1)
 		return (0);
 	i = 0;

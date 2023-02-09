@@ -21,6 +21,8 @@ SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c \
 		ft_lstclear.c ft_lstiter.c ft_lstmap.c
 
+HEADER = libft.h
+
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(BONUS:.c=.o)
 
@@ -28,14 +30,14 @@ CC				= cc
 RM				= rm -f
 CFLAGS			= -Wall -Wextra -Werror
 
-%.o : %.c  
+%.o : %.c  $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 NAME			= libft.a
 
 all:			$(NAME)
 
-$(NAME):		$(OBJS)
+$(NAME):		$(HEADER) $(OBJS)
 				ar rcs $(NAME) $(OBJS)
 
 bonus: $(OBJS) $(OBJS_BONUS)
